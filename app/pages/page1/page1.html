@@ -1,0 +1,17 @@
+<ion-navbar *navbar>
+    <ion-title>Today</ion-title>
+</ion-navbar>
+
+<ion-content class="page1">
+    <ion-card>
+        <div [hidden]="hideChart">
+            <button id="btn-close" light fab fab-right fab-top (click)="symbol=null; hideChart=true">
+                <ion-icon name="close"></ion-icon>
+            </button>
+            <chart type="StockChart" [options]="options"></chart>
+        </div>
+        <button id="btn-add" light fab (click)="openSearchPage()" [hidden]="!hideChart">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-card>
+</ion-content>
