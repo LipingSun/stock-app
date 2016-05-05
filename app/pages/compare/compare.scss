@@ -10,7 +10,7 @@
 
   ion-card {
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-    min-height: 300px;
+    min-height: 350px;
   }
 
   #btn-close {
@@ -25,13 +25,8 @@
     height: 150px;
   }
 
-  .btn-add {
-    //width: 60px;
-    //height: 60px;
-    //margin: auto;
-    //top: calc(50% - 30px);
-    //left: calc(50% - 30px);
-    //z-index: 50;
+  .icon-refresh {
+    font-size: 48px;
   }
 
 }
