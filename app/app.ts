@@ -2,11 +2,12 @@ import {App, Platform} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
 import {StockChartData} from "./providers/stock-chart-data/stock-chart-data";
+import {CompareService} from "./providers/compare-service/compare-service";
 
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
-  providers: [StockChartData],
+  providers: [StockChartData, CompareService],
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
