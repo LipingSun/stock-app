@@ -56,7 +56,7 @@ export class StockChartData {
 
             stock.chart = {
                 rangeSelector: {
-                    selected: 0
+                    selected: 5
                 },
                 title: {
                     text: stock.name + ' Stock Price'
