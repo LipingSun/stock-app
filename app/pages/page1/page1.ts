@@ -1,51 +1,51 @@
-import {Page, NavController, Modal} from 'ionic-angular';
+import {Page, NavController} from 'ionic-angular';
 import {Http} from 'angular2/http';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {SearchPage} from '../search-page/search-page';
-
-// API_URL = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=";
-const WEB_SERVER = 'http://localhost:3000';
-const INTERACTIVE_CHART_API = WEB_SERVER + '/MODApis/Api/v2/InteractiveChart/json?parameters=';
+import {INTERACTIVE_CHART_API} from "../../config";
 
 @Page({
     templateUrl: 'build/pages/page1/page1.html',
     directives: [CHART_DIRECTIVES]
 })
 export class Page1 {
-    stock = {
-        symbol: null,
-        chartOption: null
-    };
+    mainStock;
+    compareStock;
     compareList = [];
-    hideChart = true;
-    symbol:String;
-    isCompare:boolean = false;
 
     constructor(public http:Http, public nav:NavController) {
     }
 
-    onPageWillEnter() {
-        if (this.stock.symbol) {
-            if (!this.isCompare) {
-                console.log(this.stock.symbol);
-                this.getHistoryData(this.stock);
-                this.hideChart = false;
-            } else {
+    clearStock() {
+        this.mainStock = null;
+        this.compareStock = null;
+        this.compareList = [];
+    }
 
+    onPageWillEnter() {
+        if (this.mainStock) {
+            if (!this.mainStock.symbol) {
+                this.mainStock = null;
+            } else {
+                if (!this.compareStock) {
+                    console.log('mainStock', this.mainStock.symbol);
+                    this.getHistoryData(this.mainStock);
+                } else {
+                    console.log('compareStock', this.compareStock.symbol);
+                    // this.getHistoryData(this.compareStock);
+                }
             }
         }
     }
 
-    openSearchPage(stock) {
+    searchStock(stock) {
         this.nav.push(SearchPage, stock);
-        // let modal = Modal.create(SearchPage);
-        // this.nav.present(modal);
     }
 
     getHistoryData(stock) {
         let params = {
             Normalized: false,
-            NumberOfDays: 365,
+            NumberOfDays: 5000,
             // StartDate: '2011-03-01T00:00:00-00',
             // EndDate: '2016-05-02T00:00:00-00',
             DataPeriod: "Day",
@@ -70,15 +70,6 @@ export class Page1 {
                 console.log("err", err.json());
             }
         );
-        // this.http.get('http://192.168.1.103:3000/api/compare/3ced5627-44ad-4683-99dc-62779c9dd9c4').subscribe(
-        //     res => {
-        //         console.log("ok", res.json());
-        //         this.render(symbol, res.json());
-        //     },
-        //     err => {
-        //         console.log("err", err.json());
-        //     }
-        // );
     }
 
     setChartOption(symbol, data) {
@@ -102,7 +93,7 @@ export class Page1 {
                 chartSeries.push(pointData);
             }
 
-            this.stock.chartOption = {
+            this.mainStock.chartOption = {
                 rangeSelector: {
                     selected: 0
                 },
@@ -129,9 +120,4 @@ export class Page1 {
         }
     }
 
-    compare() {
-        
-        this.compareList.push();
-        // this.openSearchPage();
-    }
 }

@@ -4,14 +4,15 @@
 
 <ion-content class="page1">
     <ion-card>
-        <div [hidden]="hideChart">
-            <button id="btn-close" light fab fab-right fab-top (click)="symbol=null; hideChart=true">
+        <div *ngIf="mainStock">
+            <button id="btn-close" light fab fab-right fab-top (click)="clearStock()">
                 <ion-icon name="close"></ion-icon>
             </button>
-            <chart type="StockChart" [options]="options"></chart>
+            <chart type="StockChart" [options]="mainStock.chartOption"></chart>
         </div>
-        <button id="btn-add" light fab (click)="openSearchPage()" [hidden]="!hideChart">
+        <button id="btn-add" light fab (click)="searchStock(mainStock = {})" *ngIf="!mainStock">
             <ion-icon name="add"></ion-icon>
         </button>
     </ion-card>
+    <button *ngIf="mainStock" (click)="searchStock(compareStock = {})">Compare</button>
 </ion-content>
