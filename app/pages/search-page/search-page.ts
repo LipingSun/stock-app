@@ -12,8 +12,13 @@ export class SearchPage {
         console.log(this.navParams.data);
     }
 
-    selectStock(symbol) {
-        this.navParams.data.symbol = symbol;
+    tapItem(item) {
+        var stock = {
+            symbol: item.Symbol,
+            name: item.Name,
+            exchange: item.Exchange
+        };
+        this.navParams.data.push(stock);
         this.nav.pop();
     }
 
