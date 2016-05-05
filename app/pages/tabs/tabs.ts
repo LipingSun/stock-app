@@ -1,5 +1,5 @@
 import {Page} from 'ionic-angular';
-import {Page1} from '../page1/page1';
+import {ComparePage} from '../compare/compare';
 import {PricePage} from '../price/price';
 
 
@@ -10,5 +10,5 @@ export class TabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   tabPriceRoot: any = PricePage;
-  tab1Root: any = Page1;
+  tabCompareRoot: any = ComparePage;
 }
