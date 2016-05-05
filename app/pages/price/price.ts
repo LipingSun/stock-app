@@ -1,14 +1,32 @@
 import {Page, NavController} from 'ionic-angular';
+import {SearchPage} from "../search-page/search-page";
+import {CHART_DIRECTIVES} from 'angular2-highcharts';
+import {StockChartData} from "../../providers/stock-chart-data/stock-chart-data";
 
-/*
-  Generated class for the PricePage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Page({
-  templateUrl: 'build/pages/price/price.html',
+    templateUrl: 'build/pages/price/price.html',
+    directives: [CHART_DIRECTIVES]
 })
 export class PricePage {
-  constructor(public nav: NavController) {}
+    stocks = [];
+
+    constructor(public nav:NavController, public stockChartData:StockChartData) {
+    }
+
+    onPageWillEnter() {
+        var newStock = this.stocks[this.stocks.length - 1];
+        if (newStock && !newStock.chart) {
+            this.stockChartData.render(newStock);
+        }
+    }
+
+    addStock() {
+        this.nav.push(SearchPage, this.stocks);
+    }
+
+    removeStock(stock) {
+        delete this.stocks[this.stocks.indexOf(stock)];
+    }
+
+    
 }
