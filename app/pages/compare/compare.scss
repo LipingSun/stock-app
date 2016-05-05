@@ -1,3 +1,37 @@
 .compare {
 
+  .item, .item-inner {
+    padding: 0 !important;
+  }
+
+  ion-label {
+    margin-right: 0;
+  }
+
+  ion-card {
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    min-height: 300px;
+  }
+
+  #btn-close {
+    width: 30px;
+    height: 30px;
+    top: -1px;
+    right: -1px;
+    z-index: 50;
+  }
+
+  .button-line {
+    height: 150px;
+  }
+
+  .btn-add {
+    //width: 60px;
+    //height: 60px;
+    //margin: auto;
+    //top: calc(50% - 30px);
+    //left: calc(50% - 30px);
+    //z-index: 50;
+  }
+
 }
