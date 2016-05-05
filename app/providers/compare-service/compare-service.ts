@@ -13,7 +13,7 @@ export class CompareService {
         let data = {
             stockA: compare.stocks[0].symbol,
             stockB: compare.stocks[1].symbol,
-            days: 365
+            days: 90
         };
         let body = JSON.stringify(data);
         let headers = new Headers({'Content-Type': 'application/json'});
