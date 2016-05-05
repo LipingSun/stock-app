@@ -1,7 +1,7 @@
 import {Page, NavController} from 'ionic-angular';
 import {SearchPage} from "../search-page/search-page";
-import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {StockChartData} from "../../providers/stock-chart-data/stock-chart-data";
+import {CHART_DIRECTIVES} from 'angular2-highcharts';
 
 @Page({
     templateUrl: 'build/pages/price/price.html',
